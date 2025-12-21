@@ -17,14 +17,12 @@
   "license": "ISC",
   "author": "Osmund Million",
   "type": "commonjs",
-"scripts": {
-  "start": "parcel src/html/main.html",
-  "build": "parcel build src/html/main.html --dist-dir dist --public-url ./"
-},
+  "scripts": {
+    "start": "parcel src/html/main.html",
+    "build": "parcel build src/html/main.html --dist-dir dist --public-url ./",
+    "postinstall": "chmod +x ./node_modules/.bin/parcel"
+  },
   "devDependencies": {
     "parcel": "^2.16.3"
   }
 }
-
-
-
