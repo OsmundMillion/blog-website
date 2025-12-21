@@ -1,0 +1,2 @@
+function showLoading(e="Loading... Please wait."){let t=document.getElementById("loading-spinner");t||((t=document.createElement("div")).id="loading-spinner",t.style.position="fixed",t.style.top="0",t.style.left="0",t.style.width="100%",t.style.padding="15px",t.style.backgroundColor="#f1f5f9",t.style.color="#1e3a8a",t.style.textAlign="center",t.style.fontWeight="bold",t.style.zIndex="9999",document.body.appendChild(t)),t.textContent=e}function hideLoading(){let e=document.getElementById("loading-spinner");e&&e.remove()}
+//# sourceMappingURL=main.f0912f57.js.map

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+
+  <body class="registration-page">
+    <div>
+      <header>
+        <h1>Create a New Account</h1>
+      </header>
+
+      <main>
+        <!-- Success/Error message display -->
+        <section id="message"></section>
+
+        <!-- Dark mode toggle -->
+        <div class="theme-toggle">
+          <label>
+            <input type="checkbox" id="darkModeToggle" />
+            Dark Mode
+          </label>
+        </div>
+
+        <form id="registrationForm">
+          <h2>Registration Form</h2>
+
+          <table>
+            <tr>
+              <td><label for="fullname">Full Name:</label></td>
+              <td><input type="text" id="fullname" /></td>
+              <td><span id="fullname-error" class="error-message"></span></td>
+            </tr>
+
+            <tr>
+              <td><label for="email">Email:</label></td>
+              <td><input type="email" id="email" /></td>
+              <td><span id="email-error" class="error-message"></span></td>
+            </tr>
+
+            <tr>
+              <td><label for="username">Username:</label></td>
+              <td><input type="text" id="username" /></td>
+              <td><span id="username-error" class="error-message"></span></td>
+            </tr>
+
+            <tr>
+              <td><label for="password">Password:</label></td>
+              <td><input type="password" id="password" /></td>
+              <td><span id="password-error" class="error-message"></span></td>
+            </tr>
+
+            <tr>
+              <td><label for="confirmPassword">Confirm Password:</label></td>
+              <td><input type="password" id="confirmPassword" /></td>
+              <td>
+                <span id="confirmPassword-error" class="error-message"></span>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <button type="submit">Register</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <button type="button" id="clearFormBtn">Clear Form</button>
+              </td>
+            </tr>
+
+            <tr>
+              <td colspan="2">
+                <button type="button" class="clear-saved-data">
+                  Clear Saved Data
+                </button>
+              </td>
+            </tr>
+          </table>
+        </form>
+
+        <p>Already have an account? <a href="login.html">Login here</a></p>
+      </main>
+
+      <footer>
+        <p>&copy; 202253085006 Osmund Million</p>
+      </footer>
+    </div>
+
+    <!-- JS files -->
+    <script src="../js/main.js"></script>
+    <script src="../js/registration.js"></script>
+  </body>
+</html>

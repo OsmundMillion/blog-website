@@ -1,0 +1,27 @@
+body.dark-mode {
+  background-color: #0f172a;
+  color: #e5e7eb;
+}
+
+body.dark-mode header,
+body.dark-mode footer,
+body.dark-mode form,
+body.dark-mode aside {
+  background-color: #1e293b;
+  color: #e5e7eb;
+}
+
+body.dark-mode a {
+  color: #5eead4;
+}
+
+body.dark-mode button {
+  background-color: #14b8a6;
+  color: #022c22;
+}
+
+body.dark-mode input {
+  background-color: #020617;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+}

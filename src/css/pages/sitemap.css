@@ -1,0 +1,30 @@
+/* Sitemap Page Styling */
+.sitemap {
+  font-family: Arial, sans-serif;
+  padding: 2rem;
+  text-align: center;
+}
+
+.sitemap h1 {
+  color: #1e293b;
+  font-size: 2.5rem;
+}
+
+.sitemap ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sitemap ul li {
+  margin: 10px 0;
+}
+
+.sitemap ul li a {
+  text-decoration: none;
+  color: #3182ce;
+  font-size: 1.2rem;
+}
+
+.sitemap ul li a:hover {
+  color: #2b6cb0;
+}

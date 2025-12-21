@@ -1,0 +1,30 @@
+{
+  "name": "personal-blog-website",
+  "version": "1.0.0",
+  "description": "A simple and dynamic personal blog website for sharing thoughts, ideas, and projects. Built with HTML, CSS, and JavaScript, focusing on learning, growth, and web development.",
+  "keywords": [
+    "personal blog",
+    "web development",
+    "HTML",
+    "CSS",
+    "JavaScript",
+    "dark mode",
+    "responsive design",
+    "frontend",
+    "blogging",
+    "portfolio"
+  ],
+  "license": "ISC",
+  "author": "Osmund Million",
+  "type": "commonjs",
+"scripts": {
+  "start": "parcel src/html/main.html",
+  "build": "parcel build src/html/main.html --dist-dir dist --public-url ./"
+},
+  "devDependencies": {
+    "parcel": "^2.16.3"
+  }
+}
+
+
+

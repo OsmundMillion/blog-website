@@ -1,0 +1,84 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "title": "Understanding Quantum Computing: A Beginner's Guide",
+      "content": "Quantum computing is a rapidly evolving field that promises to revolutionize the way we solve complex problems. In this post, we’ll break down the basics of quantum mechanics and how it applies to computing. We’ll also explore the potential future of this exciting technology and the challenges we face in making it a reality.",
+      "author": "Dr. Eleanor Murphy",
+      "date": "2025-12-10",
+      "category": "Technology"
+    },
+    {
+      "id": "2",
+      "title": "The Rise of Green Energy: What's Next?",
+      "content": "With the world shifting towards renewable energy sources, green energy is becoming an increasingly popular topic. This post dives into the advancements in solar, wind, and hydroelectric power, and discusses what we can expect in the next decade as the world continues to move towards sustainable energy solutions.",
+      "author": "James D. Reynolds",
+      "date": "2025-12-12",
+      "category": "Environment"
+    },
+    {
+      "id": "3",
+      "title": "The Future of Artificial Intelligence in Healthcare",
+      "content": "AI is transforming the healthcare industry by enabling faster diagnosis, personalized treatments, and more efficient management of patient data. In this post, we explore the potential impact of AI on medical practices, the ethical considerations, and how AI-powered tools are already making a difference in the field.",
+      "author": "Dr. Maria Li",
+      "date": "2025-12-15",
+      "category": "Healthcare"
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "postId": 1,
+      "author": "Sophia Bennett",
+      "content": "This is a fantastic introduction to quantum computing! I’ve always been curious about how quantum algorithms work. Looking forward to more posts on this topic!",
+      "date": "2025-12-11"
+    },
+    {
+      "id": "2",
+      "postId": 1,
+      "author": "Liam Murphy",
+      "content": "I’ve been following quantum computing for a while now, but it’s still very complex. I’d love to see more posts on real-world applications of quantum tech.",
+      "date": "2025-12-12"
+    },
+    {
+      "id": "3",
+      "postId": 2,
+      "author": "Emily Adams",
+      "content": "Great post! It’s so encouraging to see how renewable energy is becoming a larger part of the global conversation. I’m particularly excited about solar power advancements.",
+      "date": "2025-12-13"
+    },
+    {
+      "id": "4",
+      "postId": 3,
+      "author": "Johnathan Gray",
+      "content": "AI in healthcare is a game-changer. I believe it will play a huge role in personalized treatments. The ethical implications are worth discussing as well.",
+      "date": "2025-12-16"
+    },
+    {
+      "id": "6c63",
+      "postId": 2,
+      "author": "You",
+      "content": "This is very informative",
+      "date": "2025-12-20"
+    },
+    {
+      "id": "1ce5",
+      "postId": "1",
+      "author": "You",
+      "content": "Very Informative",
+      "date": "2025-12-21T07:35:10.825Z"
+    },
+    {
+      "id": "8a20",
+      "postId": "1",
+      "author": "You",
+      "content": "I like this",
+      "date": "2025-12-21T07:35:39.041Z"
+    }
+  ],
+  "user": {
+    "username": "samuel_kelly",
+    "bio": "A tech enthusiast exploring the intersections of AI, health, and sustainability. Always looking for ways to make the world a better place through technology.",
+    "avatar": "https://randomuser.me/api/portraits/men/44.jpg"
+  }
+}

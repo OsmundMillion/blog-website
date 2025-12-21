@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+
+  <body class="login-page">
+    <div>
+      <h1>Login to Your Account</h1>
+
+      <!-- Error message display -->
+      <div id="error-message"></div>
+
+      <!-- Dark mode toggle -->
+      <div class="theme-toggle">
+        <label>
+          <input type="checkbox" id="darkModeToggle" />
+          Dark Mode
+        </label>
+      </div>
+
+      <form id="loginForm">
+        <h2>Login Form</h2>
+
+        <table>
+          <tr>
+            <td><label for="email">Email:</label></td>
+            <td><input type="email" id="email" name="email" /></td>
+            <td><span id="email-error" class="error-message"></span></td>
+          </tr>
+
+          <tr>
+            <td><label for="password">Password:</label></td>
+            <td><input type="password" id="password" name="password" /></td>
+            <td><span id="password-error" class="error-message"></span></td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <label>
+                <input type="checkbox" id="rememberMe" />
+                Remember me
+              </label>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <button type="submit">Login</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td colspan="2">
+              <button type="button" class="clear-saved-data">
+                Clear Saved Data
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+
+      <p>
+        Don't have an account?
+        <a href="registration.html">Register here</a>
+      </p>
+
+      <footer>
+        <p>&copy; 202253085006 Osmund Million</p>
+      </footer>
+    </div>
+
+    <!-- Hidden anchor link for redirecting -->
+    <a id="loginRedirect" href="main.html" style="display: none;">
+      Login Successful
+    </a>
+
+    <!-- Global features (dark mode, navigation) -->
+    <script src="../js/main.js" defer></script>
+
+    <!-- Login page functionality -->
+    <script src="../js/login.js" defer></script>
+  </body>
+</html>

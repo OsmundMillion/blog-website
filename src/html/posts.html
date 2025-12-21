@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posts | My Personal Blog</title>
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>All Blog Posts</h1>
+        <p>Explore the articles, insights, and tutorials that I've shared along my coding journey.</p>
+
+        <div class="theme-toggle">
+            <label>
+                <input type="checkbox" id="darkModeToggle">
+                Dark Mode
+            </label>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="main.html">Home</a> |
+        <a href="about.html">About</a> |
+        <a href="posts.html">Posts</a> |
+        <a href="contact.html">Contact</a> |
+        <a href="#" onclick="confirmLogout()">Logout</a>
+    </nav>
+
+    <hr>
+
+    <!-- Main Content -->
+    <main>
+        <section id="posts-container">
+            <h2>Featured Posts</h2>
+            <!-- Dynamically populated with posts -->
+        </section>
+
+        <section id="recent-posts">
+            <h2>Recent Posts</h2>
+            <button id="refresh-posts">Refresh Posts</button>
+            <div id="posts-list">
+                <!-- Post list will be injected here -->
+            </div>
+        </section>
+    </main>
+
+    <hr>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
+        <nav>
+            <a href="main.html">Home</a> |
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a>
+        </nav>
+    </footer>
+
+    <script>
+        // Confirm logout action
+        function confirmLogout() {
+            if (confirm("Are you sure you want to logout?")) {
+                window.location.href = "login.html";
+            }
+        }
+
+        // Active page highlight
+        var navLinks = document.querySelectorAll('nav a');
+        var currentPage = window.location.pathname.split('/').pop();
+        navLinks.forEach(function(link) {
+            if (link.href.includes(currentPage)) {
+                link.classList.add('active');
+            }
+        });
+
+        // Fetch posts from server
+        async function fetchPosts() {
+            try {
+                const response = await fetch("http://localhost:5000/posts");
+                const posts = await response.json();
+                displayPosts(posts);
+            } catch (error) {
+                alert("Failed to load posts.");
+            }
+        }
+
+        // Display posts in the page
+        function displayPosts(posts) {
+            const postsContainer = document.getElementById("posts-list");
+            postsContainer.innerHTML = ""; // Clear existing posts
+
+            posts.forEach((post) => {
+                const postElement = document.createElement("article");
+                postElement.classList.add("post");
+                postElement.innerHTML = `
+                    <h3>${post.title}</h3>
+                    <p><strong>Author:</strong> ${post.author}</p>
+                    <p><strong>Date:</strong> ${post.date}</p>
+                    <p><strong>Category:</strong> ${post.category}</p>
+                    <div class="post-content">
+                        <p>${post.content.substring(0, 200)}...</p>
+                    </div>
+                    <a href="post-detail.html?id=${post.id}" class="read-more">Read More</a>
+                `;
+                postsContainer.appendChild(postElement);
+            });
+        }
+
+        // Initial page load
+        window.addEventListener("load", function() {
+            fetchPosts();
+        });
+
+        // Refresh posts button functionality
+        document.getElementById("refresh-posts").addEventListener("click", fetchPosts);
+    </script>
+
+    <script src="../js/main.js"></script>
+
+</body>
+</html>

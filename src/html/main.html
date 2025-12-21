@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Personal Blog</title>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
+
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1>My Personal Blog</h1>
+      <p>Thoughts, stories, and ideas worth sharing.</p>
+
+      <!-- Dark Mode Toggle -->
+      <div class="theme-toggle">
+        <label>
+          <input type="checkbox" id="darkModeToggle" />
+          Dark Mode
+        </label>
+      </div>
+
+      <!-- Font Size Controls -->
+      <div class="font-controls">
+        <span>Font Size:</span>
+        <button id="font-small">Small</button>
+        <button id="font-medium">Medium</button>
+        <button id="font-large">Large</button>
+      </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+      <a href="main.html">Home</a> | <a href="about.html">About</a> |
+      <a href="posts.html">Posts</a> | <a href="contact.html">Contact</a> |
+      <a href="#" id="logout-link">Logout</a>
+    </nav>
+
+    <!-- Main Content Layout -->
+    <div class="main-layout">
+      <main>
+        <section>
+          <h2>Featured Post</h2>
+          <article id="featured-post"></article>
+        </section>
+
+        <hr />
+
+        <section>
+          <h2>Recent Posts</h2>
+          <button id="refresh-posts">Refresh Posts</button>
+          <br /><br />
+          <div id="posts-container"></div>
+        </section>
+      </main>
+
+      <aside id="user-profile-container">
+        <h2>User Profile</h2>
+        <div id="user-profile"></div>
+      </aside>
+    </div>
+
+    <hr />
+    <a href="page-404.html">Go to Invalid Page</a>
+
+    <footer>
+      <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
+      <nav>
+        <a href="main.html">Home</a> | <a href="about.html">About</a> |
+        <a href="contact.html">Contact</a> |
+
+        <a href="sitemap.html">Sitemap</a>
+      
+      </nav>
+    </footer>
+
+    <!-- JavaScript Files -->
+    <script src="../js/ui.js"></script>
+    <script src="../js/blog.js"></script>
+    <script src="../js/comments.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/logout.js"></script>
+    <script src="../js/font-controls.js"></script>
+    <script src="../js/profile.js"></script>
+  </body>
+</html>
