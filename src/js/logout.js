@@ -15,12 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function handleLogout() {
-  // Clear user-related data
-  localStorage.removeItem("user");
-  localStorage.removeItem("userData");
-
-  // Optional: clear everything
-  // localStorage.clear();
+  Store.clearSession();
 
   // Redirect to login page
   window.location.href = "login.html";

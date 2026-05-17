@@ -14,15 +14,13 @@
     "blogging",
     "portfolio"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "author": "Osmund Million",
-  "type": "commonjs",
   "scripts": {
-    "start": "parcel src/html/main.html",
-    "build": "parcel build src/html/main.html --dist-dir dist --public-url ./",
-    "postinstall": "chmod +x ./node_modules/.bin/parcel"
+    "start": "parcel src/html/main.html src/html/posts.html src/html/about.html src/html/contact.html src/html/login.html src/html/registration.html",
+    "build": "parcel build src/html/main.html src/html/posts.html src/html/about.html src/html/contact.html src/html/login.html src/html/registration.html --dist-dir dist --public-url ./"
   },
   "devDependencies": {
-    "parcel": "^2.16.3"
+    "parcel": "^2.0.0"
   }
 }

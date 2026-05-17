@@ -3,85 +3,91 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login Page</title>
+    <title>Login | My Personal Blog</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
 
   <body class="login-page">
-    <div>
-      <h1>Login to Your Account</h1>
 
-      <!-- Error message display -->
-      <div id="error-message"></div>
+    <!-- ── Brand mark ─────────────────────────── -->
+    <div class="auth-brand">
+      <a href="main.html">My Personal <strong>Blog</strong></a>
+    </div>
 
-      <!-- Dark mode toggle -->
+    <!-- ── Dark mode toggle ────────────────────── -->
+    <div class="auth-theme-toggle">
       <div class="theme-toggle">
         <label>
           <input type="checkbox" id="darkModeToggle" />
-          Dark Mode
+          Dark
         </label>
       </div>
-
-      <form id="loginForm">
-        <h2>Login Form</h2>
-
-        <table>
-          <tr>
-            <td><label for="email">Email:</label></td>
-            <td><input type="email" id="email" name="email" /></td>
-            <td><span id="email-error" class="error-message"></span></td>
-          </tr>
-
-          <tr>
-            <td><label for="password">Password:</label></td>
-            <td><input type="password" id="password" name="password" /></td>
-            <td><span id="password-error" class="error-message"></span></td>
-          </tr>
-
-          <tr>
-            <td colspan="2">
-              <label>
-                <input type="checkbox" id="rememberMe" />
-                Remember me
-              </label>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="2">
-              <button type="submit">Login</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td colspan="2">
-              <button type="button" class="clear-saved-data">
-                Clear Saved Data
-              </button>
-            </td>
-          </tr>
-        </table>
-      </form>
-
-      <p>
-        Don't have an account?
-        <a href="registration.html">Register here</a>
-      </p>
-
-      <footer>
-        <p>&copy; 202253085006 Osmund Million</p>
-      </footer>
     </div>
 
-    <!-- Hidden anchor link for redirecting -->
-    <a id="loginRedirect" href="main.html" style="display: none;">
-      Login Successful
-    </a>
+    <!-- ── Auth Card ───────────────────────────── -->
+    <div class="auth-card">
 
-    <!-- Global features (dark mode, navigation) -->
+      <div class="auth-card-header">
+        <span class="section-label">Welcome back</span>
+        <h1>Sign in to your account</h1>
+        <p>Use your registered email and password to continue.</p>
+      </div>
+
+      <!-- Error banner -->
+      <div id="error-message"></div>
+
+      <form id="loginForm" novalidate>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email"
+            placeholder="you@example.com" autocomplete="email" />
+          <span id="email-error" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"
+            placeholder="Min. 6 characters" autocomplete="current-password" />
+          <span id="password-error" class="error-message"></span>
+        </div>
+
+        <div class="auth-row">
+          <label class="remember-label">
+            <input type="checkbox" id="rememberMe" />
+            Remember me
+          </label>
+          <button type="button" class="clear-saved-data btn-ghost btn-sm">
+            Clear saved data
+          </button>
+        </div>
+
+        <button type="submit" class="auth-submit">Sign In</button>
+
+      </form>
+
+      <p class="auth-footer-link">
+        Don't have an account? <a href="registration.html">Register here</a>
+      </p>
+
+    </div>
+
+    <!-- ── Demo hint ───────────────────────────── -->
+    <p class="demo-hint">
+      Demo: <code>samuel@example.com</code> / <code>password123</code>
+    </p>
+
+    <!-- ── Page footer ─────────────────────────── -->
+    <footer class="auth-page-footer">
+      <p>&copy; 2025 Osmund Million</p>
+    </footer>
+
+    <!-- Hidden redirect anchor -->
+    <a id="loginRedirect" href="main.html" style="display:none;">redirect</a>
+
+    <!-- ── Scripts ────────────────────────────── -->
+    <script src="../js/store.js"></script>
     <script src="../js/main.js" defer></script>
-
-    <!-- Login page functionality -->
     <script src="../js/login.js" defer></script>
   </body>
 </html>

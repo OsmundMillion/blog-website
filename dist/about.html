@@ -3,102 +3,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Me | My Personal Blog</title>
     <link rel="stylesheet" href="/main.77a9bc14.css">
-</head>
-<body>
+  </head>
 
-    <!-- Header Section -->
+  <body>
+    <!-- ── Header ─────────────────────────────── -->
     <header>
-        <h1>About This Blog</h1>
-        <p>Who I am, why I write, and what this space is about.</p>
-
-        <div class="theme-toggle">
-            <label>
-                <input type="checkbox" id="darkModeToggle">
-                Dark Mode
-            </label>
+      <div class="header-inner">
+        <div class="header-brand">
+          <h1>My Personal <span>Blog</span></h1>
+          <p>Thoughts, stories, and ideas worth sharing.</p>
         </div>
+
+        <div class="header-controls">
+          <div class="theme-toggle">
+            <label>
+              <input type="checkbox" id="darkModeToggle">
+              Dark
+            </label>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- ── Navigation ─────────────────────────── -->
     <nav>
-        <a href="/main.html">Home</a> |
-        <a href="/about.html">About</a> |
-        <a href="/posts.html">Posts</a> |
-        <a href="/contact.html">Contact</a> |
-        <a href="#" onclick="confirmLogout()">Logout</a>
+      <div class="nav-inner">
+        <a href="/main.html">Home</a>
+        <a href="/about.html" class="active">About</a>
+        <a href="/posts.html">Posts</a>
+        <a href="/contact.html">Contact</a>
+        <a href="#" id="logout-link">Logout</a>
+      </div>
     </nav>
 
-    <hr>
+    <!-- ── Page Content ───────────────────────── -->
+    <div class="page-wrapper">
+      <div class="about-layout">
 
-    <!-- Main Content -->
-    <main>
-        <section>
+        <!-- ── Main Column ──────────────────── -->
+        <main>
+
+          <!-- Page Hero -->
+          <div class="about-hero">
+            <span class="section-label">About this blog</span>
+            <h2>Who I am, why I write,<br>and what this space is about.</h2>
+          </div>
+
+          <hr>
+
+          <!-- Who Am I -->
+          <section>
             <h2>Who Am I?</h2>
             <p>
-                I'm just a curious mind, trying to make sense of the world one line of code at a time.
-                This blog started as a place for me to document my journey into web development, but it quickly became much more.
-                Here, I share my thoughts, lessons learned, and my attempts to tackle problems, break things, and rebuild them in the process.
+              I'm just a curious mind, trying to make sense of the world one
+              line of code at a time. This blog started as a place for me to
+              document my journey into web development, but it quickly became
+              much more. Here, I share my thoughts, lessons learned, and my
+              attempts to tackle problems, break things, and rebuild them in
+              the process.
             </p>
             <p>
-                As a self-taught developer, this space is as much about learning from my mistakes as it is about celebrating small victories along the way.
-                My journey has been one of constant learning, and I believe that the best way to learn is by actually building things — messing up, debugging, and iterating as you go.
+              As a self-taught developer, this space is as much about learning
+              from my mistakes as it is about celebrating small victories along
+              the way. My journey has been one of constant learning, and I
+              believe that the best way to learn is by actually building
+              things — messing up, debugging, and iterating as you go.
             </p>
-        </section>
+          </section>
 
-        <hr>
+          <hr>
 
-        <section>
-            <h2>What You’ll Find Here</h2>
-            <ul>
-                <li>Practical guides on web development, no fluff, just what works</li>
-                <li>Personal stories about tackling complex problems and learning from them</li>
-                <li>My take on building things from scratch, and the struggles (and triumphs) that come with it</li>
-                <li>Exploring core web technologies like HTML, CSS, JavaScript, and more, with simple examples</li>
+          <!-- What You'll Find -->
+          <section>
+            <h2>What You'll Find Here</h2>
+            <ul class="about-list">
+              <li>Practical guides on web development — no fluff, just what works</li>
+              <li>Personal stories about tackling complex problems and learning from them</li>
+              <li>My take on building things from scratch, and the struggles (and triumphs) that come with it</li>
+              <li>Exploring core web technologies like HTML, CSS, JavaScript, and more, with simple examples</li>
             </ul>
-        </section>
+          </section>
 
-        <hr>
+          <hr>
 
-        <section>
+          <!-- Why This Blog Exists -->
+          <section>
             <h2>Why This Blog Exists</h2>
             <p>
-                I didn’t start this blog with the goal of becoming a web development expert, but rather to share my own experience as I learn and grow in this field.
-                If my posts help even one person avoid the same mistakes I made or inspire them to dive deeper into coding, then I’ve done my job.
+              I didn't start this blog with the goal of becoming a web
+              development expert, but rather to share my own experience as I
+              learn and grow in this field. If my posts help even one person
+              avoid the same mistakes I made or inspire them to dive deeper
+              into coding, then I've done my job.
             </p>
             <p>
-                This blog isn’t about having all the answers; it’s about documenting progress and encouraging others to start, learn, and build.
-                We’re all learning together, and that’s what makes this journey exciting.
+              This blog isn't about having all the answers; it's about
+              documenting progress and encouraging others to start, learn, and
+              build. We're all learning together, and that's what makes this
+              journey exciting.
             </p>
-        </section>
-    </main>
+          </section>
 
-    <hr>
+        </main>
 
-    <!-- Sidebar -->
-    <aside>
-        <h2>Quick Facts</h2>
-        <ul>
-            <li>Built using pure HTML, CSS, and JavaScript (no frameworks here!)</li>
-            <li>Every post is a reflection of real-world problems and solutions</li>
+        <!-- ── Sidebar ───────────────────────── -->
+        <aside>
+          <h2>Quick Facts</h2>
+          <ul class="facts-list">
+            <li>Built using pure HTML, CSS, and JavaScript — no frameworks</li>
+            <li>Every post reflects real-world problems and solutions</li>
             <li>Focused on practical learning and real-life application</li>
-        </ul>
-    </aside>
+          </ul>
 
-    <hr>
+          <hr style="margin: 1.25rem 0">
 
-    <!-- Footer -->
+          <h2>Topics Covered</h2>
+          <div class="tag-cloud">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">Debugging</span>
+            <span class="tag">Projects</span>
+            <span class="tag">Learning</span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- ── Footer ─────────────────────────────── -->
     <footer>
-        <p>© 2025 My Personal Blog. All rights reserved.</p>
-        <nav>
-            <a href="/main.html">Home</a> |
-            <a href="/about.html">About</a> |
-            <a href="/contact.html">Contact</a>
-        </nav>
+      <p>© 2025 My Personal Blog. All rights reserved.</p>
+      <nav>
+        <a href="/main.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
     </footer>
 
+    <!-- ── Scripts ────────────────────────────── -->
+    <script src="/main.0eaae06d.js"></script>
     <script src="/main.aa69868b.js"></script>
+    <script src="/main.3bb0576c.js"></script>
     <script src="/about.a31773cd.js"></script>
-
-
-
+  
 <script src="/about.47d595f8.js"></script></body></html>

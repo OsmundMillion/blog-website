@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("loginForm");
   const emailInput = document.getElementById("email");
@@ -9,6 +10,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (!loginForm) return;
 
+  // If already logged in, skip login page
+  if (Store.isLoggedIn()) {
+    window.location.href = "main.html";
+    return;
+  }
+
   loginForm.addEventListener("submit", function (event) {
     event.preventDefault();
 
@@ -16,10 +23,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const email = emailInput.value.trim();
     const password = passwordInput.value.trim();
 
+    // Clear previous errors
     emailError.textContent = "";
     passwordError.textContent = "";
     errorMessage.textContent = "";
 
+    // Validate email
     if (!email) {
       emailError.textContent = "Email is required.";
       valid = false;
@@ -28,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
       valid = false;
     }
 
+    // Validate password
     if (!password) {
       passwordError.textContent = "Password is required.";
       valid = false;
@@ -38,21 +48,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (!valid) return;
 
-    // Mock credentials
-    const mockEmail = "samuel@example.com";
-    const mockPassword = "password123";
+    // Authenticate via Store (checks registered accounts + demo credentials)
+    const result = Store.loginAccount(email, password);
 
-    if (email === mockEmail && password === mockPassword) {
-      const user = {
-        username: "samuel_kelly",
-        bio: "A tech enthusiast exploring the intersections of AI, health, and sustainability.",
-        avatar: "https://randomuser.me/api/portraits/men/44.jpg"
-      };
-
-      localStorage.setItem("user", JSON.stringify(user));
-      redirectLink.click();
+    if (result.success) {
+      Store.setSession(result.user);
+      // Navigate to main page
+      if (redirectLink) {
+        redirectLink.click();
+      } else {
+        window.location.href = "main.html";
+      }
     } else {
-      errorMessage.textContent = "Invalid email or password.";
+      errorMessage.textContent = result.error || "Invalid email or password.";
     }
   });
 

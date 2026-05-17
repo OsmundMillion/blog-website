@@ -2,18 +2,12 @@ document.addEventListener("DOMContentLoaded", () => {
   fetchUserProfile();
 });
 
-async function fetchUserProfile() {
-  try {
-    const response = await fetch("http://localhost:5000/user");
+function fetchUserProfile() {
+  const user = Store.getUser();
 
-    if (!response.ok) {
-      throw new Error("Failed to fetch user profile");
-    }
-
-    const user = await response.json();
+  if (user) {
     displayUserProfile(user);
-  } catch (error) {
-    console.error(error);
+  } else {
     displayProfileError();
   }
 }

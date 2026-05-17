@@ -8,74 +8,92 @@
   </head>
 
   <body>
-    <!-- Header Section -->
+    <!-- ── Header ─────────────────────────────── -->
     <header>
-      <h1>My Personal Blog</h1>
-      <p>Thoughts, stories, and ideas worth sharing.</p>
+      <div class="header-inner">
+        <div class="header-brand">
+          <h1>My Personal <span>Blog</span></h1>
+          <p>Thoughts, stories, and ideas worth sharing.</p>
+        </div>
 
-      <!-- Dark Mode Toggle -->
-      <div class="theme-toggle">
-        <label>
-          <input type="checkbox" id="darkModeToggle" />
-          Dark Mode
-        </label>
-      </div>
+        <div class="header-controls">
+          <!-- Font Size Controls -->
+          <div class="font-controls">
+            <span>Size:</span>
+            <button id="font-small">A</button>
+            <button id="font-medium">A</button>
+            <button id="font-large">A</button>
+          </div>
 
-      <!-- Font Size Controls -->
-      <div class="font-controls">
-        <span>Font Size:</span>
-        <button id="font-small">Small</button>
-        <button id="font-medium">Medium</button>
-        <button id="font-large">Large</button>
+          <!-- Dark Mode Toggle -->
+          <div class="theme-toggle">
+            <label>
+              <input type="checkbox" id="darkModeToggle" />
+              Dark
+            </label>
+          </div>
+        </div>
       </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- ── Navigation ─────────────────────────── -->
     <nav>
-      <a href="main.html">Home</a> | <a href="about.html">About</a> |
-      <a href="posts.html">Posts</a> | <a href="contact.html">Contact</a> |
-      <a href="#" id="logout-link">Logout</a>
+      <div class="nav-inner">
+        <a href="main.html" class="active">Home</a>
+        <a href="about.html">About</a>
+        <a href="posts.html">Posts</a>
+        <a href="contact.html">Contact</a>
+        <a href="#" id="logout-link">Logout</a>
+      </div>
     </nav>
 
-    <!-- Main Content Layout -->
-    <div class="main-layout">
-      <main>
-        <section>
-          <h2>Featured Post</h2>
-          <article id="featured-post"></article>
-        </section>
+    <!-- ── Page Content ───────────────────────── -->
+    <div class="page-wrapper">
+      <div class="main-layout">
 
-        <hr />
+        <!-- ── Main Column ──────────────────── -->
+        <main>
+          <!-- Featured Post -->
+          <section>
+            <h2>Featured</h2>
+            <article id="featured-post"></article>
+          </section>
 
-        <section>
-          <h2>Recent Posts</h2>
-          <button id="refresh-posts">Refresh Posts</button>
-          <br /><br />
-          <div id="posts-container"></div>
-        </section>
-      </main>
+          <hr />
 
-      <aside id="user-profile-container">
-        <h2>User Profile</h2>
-        <div id="user-profile"></div>
-      </aside>
+          <!-- Recent Posts -->
+          <section>
+            <h2>
+              Recent Posts
+              <button id="refresh-posts" style="margin-left: auto; font-size: 0.65rem; padding: 0.3rem 0.8rem;">
+                ↺ Refresh
+              </button>
+            </h2>
+            <div id="posts-container"></div>
+          </section>
+        </main>
+
+        <!-- ── Sidebar ───────────────────────── -->
+        <aside id="user-profile-container">
+          <h2>Profile</h2>
+          <div id="user-profile"></div>
+        </aside>
+
+      </div>
     </div>
 
-    <hr />
-    <a href="page-404.html">Go to Invalid Page</a>
-
+    <!-- ── Footer ─────────────────────────────── -->
     <footer>
       <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
       <nav>
-        <a href="main.html">Home</a> | <a href="about.html">About</a> |
-        <a href="contact.html">Contact</a> |
-
-        <a href="sitemap.html">Sitemap</a>
-      
+        <a href="main.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </footer>
 
-    <!-- JavaScript Files -->
+    <!-- ── Scripts ────────────────────────────── -->
+    <script src="../js/store.js"></script>
     <script src="../js/ui.js"></script>
     <script src="../js/blog.js"></script>
     <script src="../js/comments.js"></script>

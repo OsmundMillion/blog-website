@@ -1,16 +1,10 @@
 document.addEventListener("DOMContentLoaded", ()=>{
     fetchUserProfile();
 });
-async function fetchUserProfile() {
-    try {
-        const response = await fetch("http://localhost:5000/user");
-        if (!response.ok) throw new Error("Failed to fetch user profile");
-        const user = await response.json();
-        displayUserProfile(user);
-    } catch (error) {
-        console.error(error);
-        displayProfileError();
-    }
+function fetchUserProfile() {
+    const user = Store.getUser();
+    if (user) displayUserProfile(user);
+    else displayProfileError();
 }
 function displayUserProfile(user) {
     const container = document.getElementById("user-profile");

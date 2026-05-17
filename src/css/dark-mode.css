@@ -1,27 +1,426 @@
-body.dark-mode {
-  background-color: #0f172a;
-  color: #e5e7eb;
+
+body.dark-mode,
+body.dark-mode:not(.login-page):not(.registration-page) {
+  background-color: var(--dk-bg);
+  color: var(--dk-text);
 }
 
-body.dark-mode header,
-body.dark-mode footer,
-body.dark-mode form,
-body.dark-mode aside {
-  background-color: #1e293b;
-  color: #e5e7eb;
+/* ─── Header ─────────────────────────────────────── */
+body.dark-mode header {
+  --header-bg: rgba(10, 10, 10, 0.92);
+  border-bottom-color: var(--dk-rule);
 }
 
+body.dark-mode .header-brand h1 {
+  color: var(--dk-text);
+}
+
+body.dark-mode .header-brand h1 span {
+  color: var(--dk-accent);
+}
+
+body.dark-mode .header-brand p {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .font-controls span {
+  color: var(--dk-muted);
+}
+
+/* ─── Navigation ─────────────────────────────────── */
+body.dark-mode nav {
+  background-color: #050505;
+  border-bottom: 1px solid var(--dk-rule);
+}
+
+/* ─── Main text ──────────────────────────────────── */
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4 {
+  color: var(--dk-text);
+}
+
+body.dark-mode p {
+  color: rgba(232, 226, 217, 0.75);
+}
+
+body.dark-mode strong {
+  color: var(--dk-text);
+}
+
+body.dark-mode em {
+  color: var(--dk-muted);
+}
+
+/* ─── Section headings ───────────────────────────── */
+body.dark-mode section > h2 {
+  color: var(--dk-text);
+  border-bottom-color: var(--dk-rule);
+}
+
+/* Keep the red dot accent in dark mode */
+body.dark-mode section > h2::before {
+  background-color: var(--dk-accent);
+}
+
+/* ─── Links ──────────────────────────────────────── */
 body.dark-mode a {
-  color: #5eead4;
+  color: var(--dk-accent);
 }
 
+body.dark-mode a:hover {
+  color: var(--dk-text);
+}
+
+/* ─── Aside / Sidebar ────────────────────────────── */
+body.dark-mode aside {
+  background-color: var(--dk-surface) !important; /* override var(--white) in layout.css */
+  border-color: var(--dk-rule);
+}
+
+body.dark-mode aside h2 {
+  color: var(--dk-muted);
+  border-bottom-color: var(--dk-rule);
+}
+
+/* ─── Buttons ────────────────────────────────────── */
 body.dark-mode button {
-  background-color: #14b8a6;
-  color: #022c22;
+  background-color: var(--dk-text);
+  color: var(--dk-bg);
+  border-color: var(--dk-text);
 }
 
-body.dark-mode input {
-  background-color: #020617;
-  color: #e5e7eb;
-  border: 1px solid #334155;
+body.dark-mode button:hover {
+  background-color: var(--dk-accent);
+  border-color: var(--dk-accent);
+  color: var(--white);
+}
+
+body.dark-mode #refresh-posts,
+body.dark-mode .view-comments-btn,
+body.dark-mode .font-controls button,
+body.dark-mode button.btn-ghost {
+  background-color: transparent;
+  color: var(--dk-muted);
+  border-color: var(--dk-rule);
+}
+
+body.dark-mode #refresh-posts:hover,
+body.dark-mode .view-comments-btn:hover,
+body.dark-mode .font-controls button:hover,
+body.dark-mode button.btn-ghost:hover {
+  background-color: var(--dk-surface2);
+  color: var(--dk-text);
+  border-color: var(--dk-muted);
+  box-shadow: none;
+}
+
+body.dark-mode .submit-comment-btn {
+  background-color: var(--dk-accent);
+  border-color: var(--dk-accent);
+  color: var(--white);
+}
+
+body.dark-mode .submit-comment-btn:hover {
+  background-color: var(--dk-text);
+  border-color: var(--dk-text);
+  color: var(--dk-bg);
+}
+
+/* ─── Inputs ─────────────────────────────────────── */
+body.dark-mode input[type="text"],
+body.dark-mode input[type="email"],
+body.dark-mode input[type="password"],
+body.dark-mode textarea {
+  background-color: var(--dk-surface) !important; /* override var(--white) in components.css */
+  color: var(--dk-text);
+  border-color: var(--dk-rule);
+}
+
+body.dark-mode input:focus,
+body.dark-mode textarea:focus {
+  border-color: var(--dk-muted);
+  box-shadow: 0 0 0 3px rgba(232, 226, 217, 0.06);
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+  color: var(--dk-muted);
+}
+
+/* ─── Post Cards ─────────────────────────────────── */
+body.dark-mode .post {
+  background-color: var(--dk-surface) !important; /* override var(--white) */
+  border-color: var(--dk-rule);
+}
+
+body.dark-mode .post:hover {
+  border-color: var(--dk-rule);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .post h3 {
+  color: var(--dk-text);
+}
+
+body.dark-mode .post-content,
+body.dark-mode .post > p {
+  color: rgba(232, 226, 217, 0.7);
+}
+
+body.dark-mode .post-meta {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .post-actions {
+  border-top-color: var(--dk-rule);
+}
+
+body.dark-mode .post-category {
+  background-color: rgba(224, 91, 75, 0.15);
+  color: var(--dk-accent);
+}
+
+/* ─── Comments ───────────────────────────────────── */
+body.dark-mode .comments-container {
+  border-top-color: var(--dk-rule);
+}
+
+body.dark-mode .comment {
+  background-color: var(--dk-surface2) !important; /* override var(--cream) */
+  border-left-color: var(--dk-rule);
+}
+
+body.dark-mode .comment:hover {
+  border-left-color: var(--dk-accent);
+}
+
+body.dark-mode .comment p:first-child {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .comment p:first-child strong {
+  color: var(--dk-text);
+}
+
+body.dark-mode .comment p:last-child {
+  color: rgba(232, 226, 217, 0.75);
+}
+
+/* ─── Add comment textarea ───────────────────────── */
+body.dark-mode .add-comment-section textarea {
+  background-color: var(--dk-surface) !important;
+  color: var(--dk-text);
+  border-color: var(--dk-rule);
+}
+
+/* ─── HR / Dividers ──────────────────────────────── */
+body.dark-mode hr {
+  border-top-color: var(--dk-rule);
+}
+
+/* ─── User Profile ───────────────────────────────── */
+body.dark-mode #user-profile img {
+  border-color: var(--dk-surface2);
+}
+
+body.dark-mode #user-profile span,
+body.dark-mode #user-profile strong {
+  color: var(--dk-text);
+}
+
+body.dark-mode #user-profile p {
+  color: var(--dk-muted);
+}
+
+/* ─── Loading Spinner ────────────────────────────── */
+body.dark-mode #loading-spinner {
+  background-color: var(--dk-surface);
+  border-color: var(--dk-rule);
+  color: var(--dk-muted);
+}
+
+/* ─── Footer ─────────────────────────────────────── */
+body.dark-mode footer {
+  background-color: #050505;
+  border-top: 1px solid var(--dk-rule);
+}
+
+body.dark-mode footer p,
+body.dark-mode footer nav a {
+  color: rgba(232, 226, 217, 0.45);
+}
+
+body.dark-mode footer nav a:hover {
+  color: var(--dk-text);
+}
+
+/* ─── Toggle switch ──────────────────────────────── */
+body.dark-mode .theme-toggle label {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .theme-toggle input[type="checkbox"]:checked {
+  background-color: var(--dk-accent);
+}
+
+/* ─── Error / Message banners ────────────────────── */
+body.dark-mode #error-message {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #fca5a5;
+  border-left-color: rgba(239, 68, 68, 0.5);
+}
+
+body.dark-mode #message {
+  background-color: rgba(34, 197, 94, 0.1);
+  color: #86efac;
+  border-left-color: rgba(34, 197, 94, 0.4);
+}
+
+body.dark-mode .error-message {
+  color: #fca5a5;
+}
+
+/* ─── About Page ─────────────────────────────────── */
+body.dark-mode .about-hero h2 {
+  color: var(--dk-text);
+}
+
+body.dark-mode .about-list li {
+  background-color: var(--dk-surface) !important; /* override var(--white) in main.css */
+  border-color: var(--dk-rule);
+  border-left-color: var(--dk-accent);
+  color: rgba(232, 226, 217, 0.75);
+}
+
+body.dark-mode .about-list li:hover {
+  border-left-color: #4ade80;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .facts-list li {
+  color: rgba(232, 226, 217, 0.7);
+  border-bottom-color: var(--dk-rule);
+}
+
+body.dark-mode .tag {
+  background-color: var(--dk-surface2);
+  border-color: var(--dk-rule);
+  color: var(--dk-muted);
+}
+
+body.dark-mode .tag:hover {
+  background-color: var(--dk-text);
+  color: var(--dk-bg);
+  border-color: var(--dk-text);
+}
+
+/* ─── Contact Page ───────────────────────────────── */
+body.dark-mode .contact-hero h2 {
+  color: var(--dk-text);
+}
+
+body.dark-mode .contact-sub {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .contact-form {
+  background-color: var(--dk-surface) !important; /* override var(--white) in main.css */
+  border-color: var(--dk-rule);
+}
+
+body.dark-mode .form-group label {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .form-note {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .contact-aside {
+  background-color: var(--dk-surface);
+  border-color: var(--dk-rule);
+}
+
+body.dark-mode .contact-links li {
+  border-bottom-color: var(--dk-rule);
+}
+
+body.dark-mode .contact-link-label {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .contact-links a {
+  color: var(--dk-accent);
+}
+
+body.dark-mode .contact-links a:hover {
+  color: var(--dk-text);
+}
+
+body.dark-mode .form-success {
+  background-color: rgba(34, 197, 94, 0.08);
+  color: #86efac;
+  border-color: rgba(34, 197, 94, 0.2);
+  border-left-color: #22c55e;
+}
+
+/* ─── Auth Pages (Login / Registration) ──────────── */
+body.dark-mode.login-page,
+body.dark-mode.registration-page {
+  background-color: var(--dk-bg);
+}
+
+/* Targets both the old form selector and new .auth-card */
+body.dark-mode.login-page form,
+body.dark-mode.registration-page form,
+body.dark-mode .auth-card {
+  background-color: var(--dk-surface) !important;
+  border-color: var(--dk-rule);
+}
+
+body.dark-mode .auth-card-header {
+  border-bottom-color: var(--dk-rule);
+}
+
+body.dark-mode .auth-card-header h1 {
+  color: var(--dk-text);
+}
+
+body.dark-mode .auth-card-header p {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .auth-brand a {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .auth-brand a:hover {
+  color: var(--dk-text);
+}
+
+body.dark-mode .remember-label {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .auth-footer-link {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .auth-footer-link a {
+  color: var(--dk-accent);
+}
+
+body.dark-mode .demo-hint {
+  color: var(--dk-muted);
+}
+
+body.dark-mode .demo-hint code {
+  background-color: var(--dk-surface2);
+  color: var(--dk-text);
+}
+
+body.dark-mode .auth-page-footer {
+  color: var(--dk-muted);
 }

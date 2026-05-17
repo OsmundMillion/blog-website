@@ -4,36 +4,30 @@ document.addEventListener("DOMContentLoaded", () => {
   if (refreshBtn) {
     refreshBtn.addEventListener("click", () => {
       document.getElementById("posts-container").innerHTML = "";
-      fetchPosts();
+      loadPosts();
     });
   }
 
-  fetchPosts();
+  loadPosts();
 });
 
-// Fetch posts from json-server
-async function fetchPosts() {
+function loadPosts() {
   showLoading();
 
   try {
-    const response = await fetch("http://localhost:5000/posts");
-    const posts = await response.json();
-
-    console.log("POSTS FROM SERVER:", posts);
-
+    const posts = Store.getPosts();
     displayPosts(posts);
   } catch (error) {
     alert("Failed to load posts.");
+    console.error(error);
   } finally {
     hideLoading();
   }
 }
 
-// Render posts
 function displayPosts(posts) {
   const postsContainer = document.getElementById("posts-container");
 
-  
   if (!postsContainer) {
     console.error("posts-container not found in DOM");
     return;
@@ -47,7 +41,6 @@ function displayPosts(posts) {
   postsContainer.innerHTML = "";
 
   posts.forEach((post) => {
-    console.log("Rendering post:", post);
     const postElement = document.createElement("article");
     postElement.classList.add("post");
 

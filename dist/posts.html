@@ -1,114 +1,427 @@
 <!DOCTYPE html><html lang="en"><head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts | My Personal Blog</title>
-    <link rel="stylesheet" href="/main.77a9bc14.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Posts | My Personal Blog</title>
+
+  <!-- Shared stylesheet cascade (order matters) -->
+  <link rel="stylesheet" href="/main.77a9bc14.css">
+  <!-- styles.css @imports: base.css, layout.css, components.css, dark-mode.css -->
+
+  <!-- Page-specific styles -->
+  <link rel="stylesheet" href="/posts.923da1e6.css">
 </head>
+
 <body>
 
-    <!-- Header Section -->
-    <header>
-        <h1>All Blog Posts</h1>
-        <p>Explore the articles, insights, and tutorials that I've shared along my coding journey.</p>
+  <!-- Page loading bar (components.css: #page-loading) -->
+  <div id="page-loading" style="display: none"></div>
 
-        <div class="theme-toggle">
-            <label>
-                <input type="checkbox" id="darkModeToggle">
-                Dark Mode
-            </label>
+  <!-- ── Header ────────────────────────────────────── -->
+  <header>
+    <div class="header-inner">
+      <div class="header-brand">
+        <h1>The <span>Journal</span></h1>
+        <p>A personal blog</p>
+      </div>
+      <div class="header-controls">
+        <div class="font-controls">
+          <span>Text</span>
+          <button class="btn-sm" id="font-decrease">A−</button>
+          <button class="btn-sm" id="font-increase">A+</button>
         </div>
-    </header>
+        <div class="theme-toggle">
+          <label>
+            <input type="checkbox" id="darkModeToggle">
+            Dark mode
+          </label>
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <!-- Navigation -->
-    <nav>
-        <a href="/main.html">Home</a> |
-        <a href="/about.html">About</a> |
-        <a href="/posts.html">Posts</a> |
-        <a href="/contact.html">Contact</a> |
-        <a href="#" onclick="confirmLogout()">Logout</a>
-    </nav>
+  <!-- ── Navigation ────────────────────────────────── -->
+  <nav>
+    <div class="nav-inner">
+      <a href="/main.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/posts.html" class="active">Posts</a>
+      <a href="/contact.html">Contact</a>
+      <a href="#" id="logout-link">Logout</a>
+    </div>
+  </nav>
 
-    <hr>
+  <!-- ── Page Content ──────────────────────────────── -->
+  <div class="page-wrapper">
 
-    <!-- Main Content -->
-    <main>
+    <!-- Hero -->
+    <div class="posts-hero">
+      <span class="section-label">// All writing</span>
+      <h2>The Archive</h2>
+      <p>Articles, insights, and tutorials collected along the journey — browse freely, read deeply.</p>
+    </div>
+
+    <!-- Filter / Sort Bar -->
+    <div class="filter-bar">
+      <div class="filter-tags" id="category-filters">
+        <button class="filter-tag active" data-category="all">All</button>
+        <!-- Dynamic category buttons injected by JS -->
+      </div>
+      <select class="sort-select" id="sort-select" aria-label="Sort posts">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="alpha">A → Z</option>
+      </select>
+    </div>
+
+    <!-- Search -->
+    <div class="search-wrap">
+      <input class="search-input" type="search" id="search-input" placeholder="Search by title, author, or keyword…" autocomplete="off" aria-label="Search posts">
+      <span class="search-icon" aria-hidden="true">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </span>
+    </div>
+
+    <!-- Two-col layout -->
+    <div class="posts-layout">
+
+      <!-- ── Main ──────────────────────────────────── -->
+      <main>
+
+        <!-- Loading spinner (styled by components.css #loading-spinner) -->
+        <div id="loading-spinner" style="display: none" role="status" aria-live="polite">
+          Loading posts…
+        </div>
+
+        <!-- Featured post (styled by components.css #featured-post) -->
+        <div id="featured-post"></div>
+
+        <!-- Post list (each .post card styled by components.css) -->
         <section id="posts-container">
-            <h2>Featured Posts</h2>
-            <!-- Dynamically populated with posts -->
+          <h2>Featured Posts</h2>
+          <!-- populated by blog.js / posts.js -->
         </section>
 
         <section id="recent-posts">
-            <h2>Recent Posts</h2>
-            <button id="refresh-posts">Refresh Posts</button>
-            <div id="posts-list">
-                <!-- Post list will be injected here -->
-            </div>
+          <h2>All Posts</h2>
+          <div class="post-list" id="posts-list" role="list"></div>
         </section>
-    </main>
 
-    <hr>
+        <!-- Empty state -->
+        <div class="posts-empty" id="posts-empty" aria-live="polite">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <p>No posts match your search.</p>
+        </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>© 2025 My Personal Blog. All rights reserved.</p>
-        <nav>
-            <a href="/main.html">Home</a> |
-            <a href="/about.html">About</a> |
-            <a href="/contact.html">Contact</a>
-        </nav>
-    </footer>
+        <!-- Pagination -->
+        <nav class="pagination" id="pagination" aria-label="Post pages"></nav>
 
-    <script>// Confirm logout action
-function confirmLogout() {
-    if (confirm("Are you sure you want to logout?")) window.location.href = "login.html";
+      </main>
+
+      <!-- ── Sidebar ────────────────────────────────── -->
+      <aside aria-label="Post filters and info">
+
+        <!-- Refresh -->
+        <div class="sidebar-block">
+          <button id="refresh-posts">↺ Refresh posts</button>
+        </div>
+
+        <!-- Categories -->
+        <div class="sidebar-block">
+          <span class="sidebar-label">Categories</span>
+          <ul class="sidebar-categories" id="sidebar-categories"></ul>
+        </div>
+
+        <!-- Popular posts -->
+        <div class="sidebar-block">
+          <span class="sidebar-label">Popular Posts</span>
+          <ol class="popular-list" id="popular-posts"></ol>
+        </div>
+
+        <!-- Tag cloud (reuses .tag-cloud + .tag from main.css) -->
+        <div class="sidebar-block">
+          <span class="sidebar-label">Tags</span>
+          <div class="tag-cloud" id="tag-cloud"></div>
+        </div>
+
+        <!-- User profile (reuses #user-profile from components.css) -->
+        <div id="user-profile"></div>
+
+      </aside>
+    </div><!-- /.posts-layout -->
+
+  </div><!-- /.page-wrapper -->
+
+  <!-- ── Footer ────────────────────────────────────── -->
+  <footer>
+    <p>© 2025 My Personal Blog. All rights reserved.</p>
+    <nav>
+      <a href="/main.html">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </footer>
+
+  <!-- ── Scripts ───────────────────────────────────── -->
+  <!--
+    store.js MUST be first — seeds localStorage on first load
+    and provides the data layer for all other scripts.
+  -->
+  <script src="/main.0eaae06d.js"></script>
+  <script src="/main.05da1fe0.js"></script>
+  <script src="/main.33901292.js"></script>
+  <script src="/main.3bb0576c.js"></script>
+  <script src="/main.fdd36c6d.js"></script>
+  <script src="/main.2315b9a3.js"></script>
+  <script src="/main.aa69868b.js"></script>
+
+  <script>/* ── posts-page.js (inline) ───────────────────── *
+     *  Wires up filter / sort / search / pagination.  *
+     *  Core post rendering is handled by blog.js      *
+     *  (already refactored to use Store.getPosts()).   *
+     * ─────────────────────────────────────────────── */ const POSTS_PER_PAGE = 6;
+let allPosts = [];
+let filteredPosts = [];
+let currentPage = 1;
+let activeCategory = 'all';
+let activeSort = 'newest';
+let searchQuery = '';
+/* DOM refs */ const postsList = document.getElementById('posts-list');
+const featuredSlot = document.getElementById('featured-post');
+const emptyState = document.getElementById('posts-empty');
+const loadingSpinner = document.getElementById('loading-spinner');
+const pagination = document.getElementById('pagination');
+const categoryFilters = document.getElementById('category-filters');
+const sidebarCats = document.getElementById('sidebar-categories');
+const popularList = document.getElementById('popular-posts');
+const tagCloudEl = document.getElementById('tag-cloud');
+const searchInput = document.getElementById('search-input');
+const sortSelect = document.getElementById('sort-select');
+const refreshBtn = document.getElementById('refresh-posts');
+/* ── Load ─────────────────────────────────────── */ function loadPosts() {
+    loadingSpinner.style.display = 'flex';
+    postsList.innerHTML = '';
+    featuredSlot.innerHTML = '';
+    pagination.innerHTML = '';
+    emptyState.style.display = 'none';
+    setTimeout(()=>{
+        allPosts = Store.getPosts();
+        loadingSpinner.style.display = 'none';
+        buildSidebar();
+        buildCategoryFilters();
+        applyFilters();
+    }, 300);
 }
-// Active page highlight
-var navLinks = document.querySelectorAll('nav a');
-var currentPage = window.location.pathname.split('/').pop();
-navLinks.forEach(function(link) {
-    if (link.href.includes(currentPage)) link.classList.add('active');
-});
-// Fetch posts from server
-async function fetchPosts() {
-    try {
-        const response = await fetch("http://localhost:5000/posts");
-        const posts = await response.json();
-        displayPosts(posts);
-    } catch (error) {
-        alert("Failed to load posts.");
+/* ── Filter + sort + search ───────────────────── */ function applyFilters() {
+    let posts = [
+        ...allPosts
+    ];
+    if (activeCategory !== 'all') posts = posts.filter((p)=>(p.category || '').toLowerCase() === activeCategory.toLowerCase());
+    if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase();
+        posts = posts.filter((p)=>(p.title || '').toLowerCase().includes(q) || (p.author || '').toLowerCase().includes(q) || (p.content || '').toLowerCase().includes(q) || (p.category || '').toLowerCase().includes(q));
     }
+    if (activeSort === 'newest') posts.sort((a, b)=>new Date(b.date) - new Date(a.date));
+    else if (activeSort === 'oldest') posts.sort((a, b)=>new Date(a.date) - new Date(b.date));
+    else if (activeSort === 'alpha') posts.sort((a, b)=>(a.title || '').localeCompare(b.title || ''));
+    filteredPosts = posts;
+    currentPage = 1;
+    renderPage();
 }
-// Display posts in the page
-function displayPosts(posts) {
-    const postsContainer = document.getElementById("posts-list");
-    postsContainer.innerHTML = ""; // Clear existing posts
-    posts.forEach((post)=>{
-        const postElement = document.createElement("article");
-        postElement.classList.add("post");
-        postElement.innerHTML = `
-                    <h3>${post.title}</h3>
-                    <p><strong>Author:</strong> ${post.author}</p>
-                    <p><strong>Date:</strong> ${post.date}</p>
-                    <p><strong>Category:</strong> ${post.category}</p>
-                    <div class="post-content">
-                        <p>${post.content.substring(0, 200)}...</p>
-                    </div>
-                    <a href="post-detail.html?id=${post.id}" class="read-more">Read More</a>
-                `;
-        postsContainer.appendChild(postElement);
+/* ── Render page ──────────────────────────────── */ function renderPage() {
+    postsList.innerHTML = '';
+    featuredSlot.innerHTML = '';
+    pagination.innerHTML = '';
+    if (!filteredPosts.length) {
+        emptyState.style.display = 'block';
+        return;
+    }
+    emptyState.style.display = 'none';
+    const start = (currentPage - 1) * POSTS_PER_PAGE;
+    const page = filteredPosts.slice(start, start + POSTS_PER_PAGE);
+    // Show featured card only on page 1, unfiltered, no search
+    if (currentPage === 1 && activeCategory === 'all' && !searchQuery.trim()) {
+        renderFeaturedCard(page[0]);
+        renderPostCards(page.slice(1), 1);
+    } else renderPostCards(page, 0);
+    renderPagination();
+}
+/* ── Featured card ────────────────────────────── */ function renderFeaturedCard(post) {
+    const excerpt = (post.content || '').substring(0, 220);
+    featuredSlot.innerHTML = `
+        <div class="post-category">${esc(post.category || 'Uncategorised')}</div>
+        <h3>${esc(post.title)}</h3>
+        <div class="post-meta">
+          <span>${esc(post.author || 'Anonymous')}</span>
+          <span>${formatDate(post.date)}</span>
+        </div>
+        <p>${esc(excerpt)}\u{2026}</p>
+        <a href="post-detail.html?id=${post.id}" class="btn-ghost btn-sm">Read article \u{2192}</a>
+      `;
+}
+/* ── Standard post cards ──────────────────────── */ function renderPostCards(posts, startIndex) {
+    posts.forEach((post, i)=>{
+        const excerpt = (post.content || '').substring(0, 160);
+        const el = document.createElement('article');
+        el.classList.add('post');
+        el.style.animationDelay = `${0.05 * i}s`;
+        el.setAttribute('role', 'listitem');
+        el.innerHTML = `
+          <div class="post-category">${esc(post.category || 'Uncategorised')}</div>
+          <h3>${esc(post.title)}</h3>
+          <div class="post-meta">
+            <span><strong>By</strong> ${esc(post.author || 'Anonymous')}</span>
+            <span>${formatDate(post.date)}</span>
+          </div>
+          <div class="post-content">
+            <p>${esc(excerpt)}\u{2026}</p>
+          </div>
+          <div class="post-actions">
+            <a href="post-detail.html?id=${post.id}" class="btn-sm">Read more</a>
+            <button class="view-comments-btn" data-post-id="${post.id}">Comments</button>
+          </div>
+        `;
+        postsList.appendChild(el);
     });
 }
-// Initial page load
-window.addEventListener("load", function() {
-    fetchPosts();
+/* ── Pagination ───────────────────────────────── */ function renderPagination() {
+    const total = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
+    if (total <= 1) return;
+    pagination.appendChild(makePageBtn("\u2190", currentPage === 1, ()=>goToPage(currentPage - 1)));
+    for(let i = 1; i <= total; i++){
+        if (total > 6 && i > 2 && i < total - 1 && Math.abs(i - currentPage) > 1) {
+            if (i === 3 || i === total - 2) {
+                const ell = document.createElement('span');
+                ell.className = 'page-ellipsis';
+                ell.textContent = "\u2026";
+                pagination.appendChild(ell);
+            }
+            continue;
+        }
+        const btn = makePageBtn(i, false, ()=>goToPage(i));
+        if (i === currentPage) btn.classList.add('active');
+        pagination.appendChild(btn);
+    }
+    pagination.appendChild(makePageBtn("\u2192", currentPage === total, ()=>goToPage(currentPage + 1)));
+}
+function goToPage(n) {
+    currentPage = n;
+    renderPage();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+function makePageBtn(label, disabled, onClick) {
+    const btn = document.createElement('button');
+    btn.className = 'page-btn';
+    btn.textContent = label;
+    btn.disabled = disabled;
+    btn.addEventListener('click', onClick);
+    return btn;
+}
+/* ── Sidebar ──────────────────────────────────── */ function buildSidebar() {
+    // Category counts
+    const catMap = {};
+    allPosts.forEach((p)=>{
+        const c = p.category || 'Uncategorised';
+        catMap[c] = (catMap[c] || 0) + 1;
+    });
+    sidebarCats.innerHTML = '';
+    Object.entries(catMap).sort((a, b)=>b[1] - a[1]).forEach(([cat, count], i)=>{
+        const li = document.createElement('li');
+        li.style.animationDelay = `${0.06 * i}s`;
+        li.innerHTML = `
+            <a>${esc(cat)}</a>
+            <span class="count">${count}</span>
+          `;
+        li.querySelector('a').addEventListener('click', ()=>setCategory(cat));
+        sidebarCats.appendChild(li);
+    });
+    // Popular posts (first 4)
+    popularList.innerHTML = '';
+    allPosts.slice(0, 4).forEach((post, i)=>{
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <span class="popular-num">0${i + 1}</span>
+          <a class="popular-title" href="post-detail.html?id=${post.id}">${esc(post.title)}</a>
+        `;
+        popularList.appendChild(li);
+    });
+    // Tag cloud — reuse .tag class from main.css
+    const tags = [
+        ...new Set(allPosts.map((p)=>p.category).filter(Boolean))
+    ];
+    tagCloudEl.innerHTML = '';
+    tags.forEach((tag)=>{
+        const span = document.createElement('span');
+        span.className = 'tag';
+        span.textContent = tag;
+        span.style.cursor = 'pointer';
+        span.addEventListener('click', ()=>setCategory(tag));
+        tagCloudEl.appendChild(span);
+    });
+}
+function buildCategoryFilters() {
+    // Remove previously injected buttons (keep "All")
+    categoryFilters.querySelectorAll('[data-category]:not([data-category="all"])').forEach((el)=>el.remove());
+    const cats = [
+        ...new Set(allPosts.map((p)=>p.category).filter(Boolean))
+    ];
+    cats.forEach((cat)=>{
+        const btn = document.createElement('button');
+        btn.className = 'filter-tag';
+        btn.dataset.category = cat;
+        btn.textContent = cat;
+        btn.addEventListener('click', ()=>setCategory(cat));
+        categoryFilters.appendChild(btn);
+    });
+}
+function setCategory(cat) {
+    activeCategory = cat;
+    document.querySelectorAll('.filter-tag').forEach((btn)=>{
+        btn.classList.toggle('active', btn.dataset.category === cat);
+    });
+    applyFilters();
+}
+/* ── Events ───────────────────────────────────── */ document.querySelector('.filter-tag[data-category="all"]').addEventListener('click', ()=>setCategory('all'));
+searchInput.addEventListener('input', ()=>{
+    searchQuery = searchInput.value;
+    applyFilters();
 });
-// Refresh posts button functionality
-document.getElementById("refresh-posts").addEventListener("click", fetchPosts);
+sortSelect.addEventListener('change', ()=>{
+    activeSort = sortSelect.value;
+    applyFilters();
+});
+refreshBtn.addEventListener('click', loadPosts);
+document.getElementById('logout-link').addEventListener('click', (e)=>{
+    e.preventDefault();
+    if (confirm('Are you sure you want to logout?')) {
+        if (typeof Store !== 'undefined') Store.clearSession();
+        window.location.href = 'login.html';
+    }
+});
+/* ── Helpers ──────────────────────────────────── */ function esc(str) {
+    const d = document.createElement('div');
+    d.textContent = str || '';
+    return d.innerHTML;
+}
+function formatDate(dateStr) {
+    if (!dateStr) return "\u2014";
+    const d = new Date(dateStr);
+    if (isNaN(d)) return dateStr;
+    return d.toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric'
+    });
+}
+/* ── Init ─────────────────────────────────────── */ window.addEventListener('load', loadPosts);
 
 </script>
-
-    <script src="/main.aa69868b.js"></script>
-
 
 
 <script src="/posts.71f67cea.js"></script></body></html>

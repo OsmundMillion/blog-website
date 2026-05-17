@@ -3,96 +3,103 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Registration Page</title>
+    <title>Register | My Personal Blog</title>
     <link rel="stylesheet" href="../css/styles.css" />
   </head>
 
   <body class="registration-page">
-    <div>
-      <header>
-        <h1>Create a New Account</h1>
-      </header>
 
-      <main>
-        <!-- Success/Error message display -->
-        <section id="message"></section>
-
-        <!-- Dark mode toggle -->
-        <div class="theme-toggle">
-          <label>
-            <input type="checkbox" id="darkModeToggle" />
-            Dark Mode
-          </label>
-        </div>
-
-        <form id="registrationForm">
-          <h2>Registration Form</h2>
-
-          <table>
-            <tr>
-              <td><label for="fullname">Full Name:</label></td>
-              <td><input type="text" id="fullname" /></td>
-              <td><span id="fullname-error" class="error-message"></span></td>
-            </tr>
-
-            <tr>
-              <td><label for="email">Email:</label></td>
-              <td><input type="email" id="email" /></td>
-              <td><span id="email-error" class="error-message"></span></td>
-            </tr>
-
-            <tr>
-              <td><label for="username">Username:</label></td>
-              <td><input type="text" id="username" /></td>
-              <td><span id="username-error" class="error-message"></span></td>
-            </tr>
-
-            <tr>
-              <td><label for="password">Password:</label></td>
-              <td><input type="password" id="password" /></td>
-              <td><span id="password-error" class="error-message"></span></td>
-            </tr>
-
-            <tr>
-              <td><label for="confirmPassword">Confirm Password:</label></td>
-              <td><input type="password" id="confirmPassword" /></td>
-              <td>
-                <span id="confirmPassword-error" class="error-message"></span>
-              </td>
-            </tr>
-
-            <tr>
-              <td colspan="2">
-                <button type="submit">Register</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td colspan="2">
-                <button type="button" id="clearFormBtn">Clear Form</button>
-              </td>
-            </tr>
-
-            <tr>
-              <td colspan="2">
-                <button type="button" class="clear-saved-data">
-                  Clear Saved Data
-                </button>
-              </td>
-            </tr>
-          </table>
-        </form>
-
-        <p>Already have an account? <a href="login.html">Login here</a></p>
-      </main>
-
-      <footer>
-        <p>&copy; 202253085006 Osmund Million</p>
-      </footer>
+    <!-- ── Brand mark ─────────────────────────── -->
+    <div class="auth-brand">
+      <a href="main.html">My Personal <strong>Blog</strong></a>
     </div>
 
-    <!-- JS files -->
-    <script src="../js/main.js"></script>
-    <script src="../js/registration.js"></script>
+    <!-- ── Dark mode toggle ────────────────────── -->
+    <div class="auth-theme-toggle">
+      <div class="theme-toggle">
+        <label>
+          <input type="checkbox" id="darkModeToggle" />
+          Dark
+        </label>
+      </div>
+    </div>
+
+    <!-- ── Auth Card ───────────────────────────── -->
+    <div class="auth-card">
+
+      <div class="auth-card-header">
+        <span class="section-label">Get started</span>
+        <h1>Create a new account</h1>
+        <p>Fill in your details below to register.</p>
+      </div>
+
+      <!-- Success/Error banner -->
+      <div id="message"></div>
+
+      <form id="registrationForm" novalidate>
+
+        <div class="form-group">
+          <label for="fullname">Full Name</label>
+          <input type="text" id="fullname" name="fullname"
+            placeholder="Jane Doe" autocomplete="name" />
+          <span id="fullname-error" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email"
+            placeholder="you@example.com" autocomplete="email" />
+          <span id="email-error" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" id="username" name="username"
+            placeholder="Choose a username" autocomplete="username" />
+          <span id="username-error" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password"
+            placeholder="Min. 6 characters" autocomplete="new-password" />
+          <span id="password-error" class="error-message"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="confirmPassword">Confirm Password</label>
+          <input type="password" id="confirmPassword" name="confirmPassword"
+            placeholder="Repeat your password" autocomplete="new-password" />
+          <span id="confirmPassword-error" class="error-message"></span>
+        </div>
+
+        <div class="auth-row">
+          <button type="button" id="clearFormBtn" class="btn-ghost btn-sm">
+            Clear Form
+          </button>
+          <button type="button" class="clear-saved-data btn-ghost btn-sm">
+            Clear saved data
+          </button>
+        </div>
+
+        <button type="submit" class="auth-submit">Register</button>
+
+      </form>
+
+      <p class="auth-footer-link">
+        Already have an account? <a href="login.html">Sign in here</a>
+      </p>
+
+    </div>
+
+    <!-- ── Page footer ─────────────────────────── -->
+    <footer class="auth-page-footer">
+      <p>&copy; 2025 Osmund Million</p>
+    </footer>
+
+    <!-- ── Scripts ────────────────────────────── -->
+    <script src="../js/store.js"></script>
+    <script src="../js/main.js" defer></script>
+    <script src="../js/registration.js" defer></script>
   </body>
 </html>

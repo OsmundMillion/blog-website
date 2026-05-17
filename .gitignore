@@ -1,0 +1,30 @@
+# ─── Dependencies ────────────────────────────────
+node_modules/
+
+# ─── Parcel build output ──────────────────────────
+dist/
+.parcel-cache/
+
+# ─── Lock files (optional — see note below) ──────
+package-lock.json
+yarn.lock
+
+# ─── Mock database ───────────────────────────────
+db.json
+
+# ─── OS files ────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ─── Editor files ────────────────────────────────
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# ─── Environment files ───────────────────────────
+.env
+.env.local
+.env.production

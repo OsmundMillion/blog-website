@@ -1,72 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | My Personal Blog</title>
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
+    <link rel="stylesheet" href="../css/styles.css" />
+  </head>
 
-    <!-- Header Section -->
+  <body>
+    <!-- ── Header ─────────────────────────────── -->
     <header>
-        <h1>Contact Me</h1>
-        <p>Have a question or just want to say hi? Feel free to drop a message below!</p>
-
-        <div class="theme-toggle">
-            <label>
-                <input type="checkbox" id="darkModeToggle">
-                Dark Mode
-            </label>
+      <div class="header-inner">
+        <div class="header-brand">
+          <h1>My Personal <span>Blog</span></h1>
+          <p>Thoughts, stories, and ideas worth sharing.</p>
         </div>
+
+        <div class="header-controls">
+          <div class="theme-toggle">
+            <label>
+              <input type="checkbox" id="darkModeToggle" />
+              Dark
+            </label>
+          </div>
+        </div>
+      </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- ── Navigation ─────────────────────────── -->
     <nav>
-        <a href="main.html">Home</a> |
-        <a href="about.html">About</a> |
-        <a href="posts.html">Posts</a> |
-        <a href="contact.html">Contact</a> |
-        <a href="#" onclick="confirmLogout()">Logout</a>
+      <div class="nav-inner">
+        <a href="main.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="posts.html">Posts</a>
+        <a href="contact.html" class="active">Contact</a>
+        <a href="#" id="logout-link">Logout</a>
+      </div>
     </nav>
 
-    <hr>
+    <!-- ── Page Content ───────────────────────── -->
+    <div class="page-wrapper">
+      <div class="contact-layout">
 
-    <!-- Main Content -->
-    <main>
-        <section>
-            <h2>Contact Form</h2>
-            <form id="contact-form">
-                <div>
-                    <label for="name">Name:</label>
-                    <input type="text" id="name" name="name" required>
+        <!-- ── Form Column ──────────────────── -->
+        <main>
+          <div class="contact-hero">
+            <span class="section-label">Get in touch</span>
+            <h2>Have a question or just<br />want to say hi?</h2>
+            <p class="contact-sub">
+              Drop a message below and I'll get back to you as soon as I can.
+              No spam, no fluff — just a real conversation.
+            </p>
+          </div>
+
+          <section>
+            <form id="contact-form" class="contact-form" novalidate>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Your full name" required />
+                  <span class="error-message" id="name-error"></span>
                 </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required>
+
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="you@example.com" required />
+                  <span class="error-message" id="email-error"></span>
                 </div>
-                <div>
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="4" required></textarea>
-                </div>
-                <button type="submit">Send Message</button>
+              </div>
+
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6"
+                  placeholder="What's on your mind?" required></textarea>
+                <span class="error-message" id="message-error"></span>
+              </div>
+
+              <div class="form-footer">
+                <button type="submit" id="submit-btn">
+                  Send Message
+                </button>
+                <span class="form-note">I usually reply within 1–2 days.</span>
+              </div>
+
+              <div id="form-success" class="form-success" style="display:none;">
+                ✦ Message sent! Thanks for reaching out — I'll be in touch soon.
+              </div>
+
             </form>
-        </section>
-    </main>
+          </section>
+        </main>
 
-    <hr>
+        <!-- ── Info Sidebar ──────────────────── -->
+        <aside class="contact-aside">
+          <h2>Other Ways to Connect</h2>
 
-    <!-- Footer -->
+          <ul class="contact-links">
+            <li>
+              <span class="contact-link-label">Email</span>
+              <a href="mailto:hello@myblog.com">hello@myblog.com</a>
+            </li>
+            <li>
+              <span class="contact-link-label">GitHub</span>
+              <a href="#" target="_blank" rel="noopener">github.com/myblog</a>
+            </li>
+            <li>
+              <span class="contact-link-label">Twitter / X</span>
+              <a href="#" target="_blank" rel="noopener">@myblog</a>
+            </li>
+          </ul>
+
+          <hr style="margin: 1.25rem 0;" />
+
+          <h2>Response Time</h2>
+          <p style="font-size: 0.82rem; color: var(--ink-muted); margin: 0; line-height: 1.6;">
+            I read every message personally and try to respond within a couple of days.
+            For urgent matters, email is fastest.
+          </p>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- ── Footer ─────────────────────────────── -->
     <footer>
-        <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
-        <nav>
-            <a href="main.html">Home</a> |
-            <a href="about.html">About</a> |
-            <a href="posts.html">Posts</a>
-        </nav>
+      <p>&copy; 2025 My Personal Blog. All rights reserved.</p>
+      <nav>
+        <a href="main.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="posts.html">Posts</a>
+      </nav>
     </footer>
 
+    <!-- ── Scripts ────────────────────────────── -->
+    <script src="../js/store.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/logout.js"></script>
     <script src="../js/contact.js"></script>
-
-</body>
+  </body>
 </html>

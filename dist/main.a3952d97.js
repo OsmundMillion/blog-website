@@ -1,4 +1,3 @@
-// Event delegation for dynamic content
 document.addEventListener("click", (event)=>{
     // View comments
     if (event.target.classList.contains("view-comments-btn")) {
@@ -11,26 +10,37 @@ document.addEventListener("click", (event)=>{
         submitComment(postId);
     }
 });
-async function viewComments(postId) {
+function viewComments(postId) {
     showLoading("Fetching comments...");
     try {
-        const response = await fetch(`http://localhost:5000/comments?postId=${postId}`);
-        const comments = await response.json();
+        // Read directly from localStorage via Store
+        const comments = Store.getCommentsByPostId(postId);
         displayComments(comments, postId);
     } catch (error) {
         alert("Failed to load comments.");
+        console.error(error);
     } finally{
         hideLoading();
     }
 }
 function displayComments(comments, postId) {
     const container = document.getElementById(`comments-${postId}`);
+    if (!container) return;
     container.innerHTML = "";
+    if (comments.length === 0) {
+        container.innerHTML = "<p><em>No comments yet. Be the first!</em></p>";
+        return;
+    }
     comments.forEach((comment)=>{
         const div = document.createElement("div");
         div.classList.add("comment");
+        const displayDate = comment.date ? new Date(comment.date).toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "short",
+            day: "numeric"
+        }) : "";
         div.innerHTML = `
-      <p><strong>${comment.author}</strong> <em>${comment.date}</em></p>
+      <p><strong>${comment.author}</strong> <em>${displayDate}</em></p>
       <p>${comment.content}</p>
     `;
         container.appendChild(div);
@@ -40,26 +50,21 @@ function submitComment(postId) {
     const input = document.getElementById(`comment-input-${postId}`);
     const text = input.value.trim();
     if (!text) return;
+    // Get current logged-in user's name
+    const session = Store.getSession();
+    const author = session?.username || "You";
+    // Save to localStorage via Store
+    const newComment = Store.addComment(postId, author, text);
     const commentsSection = document.getElementById(`comments-${postId}`);
-    // Optimistic UI update
-    const tempComment = document.createElement("p");
-    tempComment.textContent = `You: ${text}`;
-    commentsSection.appendChild(tempComment);
-    fetch("http://localhost:5000/comments", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            postId,
-            author: "You",
-            content: text,
-            date: new Date().toISOString()
-        })
-    }).catch(()=>{
-        commentsSection.removeChild(tempComment);
-        alert("Failed to submit comment.");
-    });
+    const placeholder = commentsSection.querySelector("em");
+    if (placeholder) commentsSection.innerHTML = "";
+    const div = document.createElement("div");
+    div.classList.add("comment");
+    div.innerHTML = `
+    <p><strong>${newComment.author}</strong> <em>Just now</em></p>
+    <p>${newComment.content}</p>
+  `;
+    commentsSection.appendChild(div);
     input.value = "";
 }
 

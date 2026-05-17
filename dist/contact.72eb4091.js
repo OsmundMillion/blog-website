@@ -1,27 +1,28 @@
-// Confirm logout action
-function confirmLogout() {
-    if (confirm("Are you sure you want to logout?")) window.location.href = "login.html";
-}
-// Active page highlight
-var navLinks = document.querySelectorAll('nav a');
-var currentPage = window.location.pathname.split('/').pop();
-navLinks.forEach(function(link) {
-    if (link.href.includes(currentPage)) link.classList.add('active');
-});
-// Handle form submission
-document.getElementById("contact-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Prevent form from submitting the default way
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const message = document.getElementById("message").value;
-    if (!name || !email || !message) {
-        alert("Please fill in all the fields.");
-        return;
-    }
-    // Here you would typically send the data to your backend server or email API
-    alert(`Thank you for your message, ${name}! I\u{2019}ll get back to you as soon as possible.`);
-    // Optionally reset the form after submission
-    document.getElementById("contact-form").reset();
+document.addEventListener("DOMContentLoaded", ()=>{
+    // Active page highlight
+    const navLinks = document.querySelectorAll("nav a");
+    const currentPage = window.location.pathname.split("/").pop();
+    navLinks.forEach((link)=>{
+        if (link.href.includes(currentPage)) link.classList.add("active");
+    });
+    // Handle form submission
+    const form = document.getElementById("contact-form");
+    if (!form) return;
+    form.addEventListener("submit", (event)=>{
+        event.preventDefault();
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+        if (!name || !email || !message) {
+            alert("Please fill in all the fields.");
+            return;
+        }
+        // Show success state
+        form.reset();
+        form.style.display = "none";
+        const successDiv = document.getElementById("form-success");
+        if (successDiv) successDiv.style.display = "block";
+    });
 });
 
 //# sourceMappingURL=contact.72eb4091.js.map
