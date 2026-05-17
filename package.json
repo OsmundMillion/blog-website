@@ -14,10 +14,8 @@
     "blogging",
     "portfolio"
   ],
-  "license": "ISC",
+  "license": "MIT",
   "author": "Osmund Million",
-  "type": "commonjs",
-  "main": "main.js",
   "scripts": {
     "start": "parcel src/html/main.html src/html/posts.html src/html/about.html src/html/contact.html src/html/login.html src/html/registration.html",
     "build": "parcel build src/html/main.html src/html/posts.html src/html/about.html src/html/contact.html src/html/login.html src/html/registration.html --dist-dir dist"
